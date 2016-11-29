@@ -8,7 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.vt.hjue.hereandnow.LoginActivity">
+    tools:context="edu.vt.hjue.hereandnow.LoginActivity"
+    android:background="#28a2db">
 
     <!-- Login progress -->
     <ProgressBar
@@ -19,20 +20,34 @@
         android:layout_marginBottom="8dp"
         android:visibility="gone" />
 
+
+
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_alignTop="@+id/HN"
+            android:layout_marginTop="50dp">
 
-            <android.support.design.widget.TextInputLayout
+        <ImageView
+            android:layout_width="118dp"
+            android:layout_height="118dp"
+            android:id="@+id/imageView"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/logo"
+            android:layout_marginTop="40dp"/>
+
+
+        <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp">
 
                 <AutoCompleteTextView
                     android:id="@+id/email"
@@ -66,11 +81,13 @@
             <Button
                 android:id="@+id/email_sign_in_button"
                 style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
+                android:layout_width="202dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in"
-                android:textStyle="bold" />
+                android:text="@string/action_log_in"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold"
+                android:background="#f8f5f1" />
 
         </LinearLayout>
     </ScrollView>
