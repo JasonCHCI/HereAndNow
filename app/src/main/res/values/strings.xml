@@ -35,6 +35,17 @@
     <string name="pref_default_display_name">John Smith</string>
 
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="profile">
+        <item>@drawable/ncb</item>
+        <item>@drawable/zep</item>
+        <item>@drawable/chi</item>
+        <item>@drawable/chik</item>
+        <item>@drawable/ind</item>
+        <item>@drawable/panda</item>
+        <item>@drawable/gre</item>
+        <item>@drawable/caf</item>
+        <item>@drawable/coo</item>
+    </string-array>
     <string-array name="pref_example_list_titles">
         <item>Always</item>
         <item>When possible</item>
@@ -168,4 +179,7 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

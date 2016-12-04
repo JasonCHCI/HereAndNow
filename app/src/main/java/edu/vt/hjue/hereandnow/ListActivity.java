@@ -1,8 +1,10 @@
 package edu.vt.hjue.hereandnow;
 
+import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,7 +16,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class ListActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, RestListFragment.Callback, RestPointFragment.Callback {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +27,6 @@ public class ListActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -40,6 +36,9 @@ public class ListActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        RestListFragment fragment = new RestListFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.relativelayout_for_fragment, fragment, fragment.getTag()).commit();
     }
 
     @Override
@@ -81,11 +80,18 @@ public class ListActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
+            RestListFragment fragment = new RestListFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.relativelayout_for_fragment, fragment, fragment.getTag()).commit();
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-
+            RestPointFragment fragment = new RestPointFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.relativelayout_for_fragment, fragment, fragment.getTag()).commit();
         } else if (id == R.id.nav_manage) {
-
+            SettingsFragment settingsFragment = SettingsFragment.newInstance("name", "time");
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.relativelayout_for_fragment, settingsFragment, settingsFragment.getTag()).commit();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
@@ -95,5 +101,19 @@ public class ListActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onResSelected(Restaurant res) {
+        DetailFragment detailFragment = DetailFragment.newInstance(res);
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.relativelayout_for_fragment, detailFragment, detailFragment.getTag()).commit();
+    }
+
+    @Override
+    public void onResPointSelected(Restaurant res) {
+        DetailFragment detailFragment = DetailFragment.newInstance(res);
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.relativelayout_for_fragment, detailFragment, detailFragment.getTag()).commit();
     }
 }
