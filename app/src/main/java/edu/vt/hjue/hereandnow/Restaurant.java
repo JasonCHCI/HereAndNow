@@ -72,6 +72,10 @@ public class Restaurant implements Parcelable {
         this.profile_pic_id = id;
     }
 
+    public void setTime(int number) {
+        this.guestNum = number;
+    }
+
     @Override
     public int describeContents() {
         return 0;
