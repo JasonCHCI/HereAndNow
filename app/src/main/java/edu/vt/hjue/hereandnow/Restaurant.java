@@ -9,18 +9,16 @@ import android.os.Parcelable;
 public class Restaurant implements Parcelable {
 
     private String name;
-    private String time;
     private String type;
     private float rate;
-    private int guestNum;
+    private float time;
     private int profile_pic_id;
     private int points;
 
-    public Restaurant(String name, String time, int number, int point, int profile, float rate, String type) {
+    public Restaurant(String name, float time, int point, int profile, float rate, String type) {
         this.name = name;
         this.time = time;
         this.type = type;
-        this.guestNum = number;
         this.points = point;
         this.profile_pic_id = profile;
         this.rate = rate;
@@ -28,10 +26,9 @@ public class Restaurant implements Parcelable {
 
     protected Restaurant(Parcel in) {
         name = in.readString();
-        time = in.readString();
+        time = in.readFloat();
         type = in.readString();
-        rate = in.readInt();
-        guestNum = in.readInt();
+        rate = in.readFloat();
         profile_pic_id = in.readInt();
         points = in.readInt();
     }
@@ -52,11 +49,10 @@ public class Restaurant implements Parcelable {
         return name;
     }
 
-    public String getTime() {
+    public float getTime() {
         return time;
     }
 
-    public int getNumber() { return guestNum;}
 
     public int getPoints() { return points;}
 
@@ -72,8 +68,8 @@ public class Restaurant implements Parcelable {
         this.profile_pic_id = id;
     }
 
-    public void setTime(int number) {
-        this.guestNum = number;
+    public void setTime(float number) {
+        this.time = number;
     }
 
     @Override
@@ -84,10 +80,9 @@ public class Restaurant implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
-        dest.writeString(time);
+        dest.writeFloat(time);
         dest.writeString(type);
         dest.writeFloat(rate);
-        dest.writeInt(guestNum);
         dest.writeInt(profile_pic_id);
         dest.writeInt(points);
     }

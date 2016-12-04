@@ -93,9 +93,13 @@ public class ListActivity extends AppCompatActivity
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction().replace(R.id.relativelayout_for_fragment, settingsFragment, settingsFragment.getTag()).commit();
         } else if (id == R.id.nav_share) {
-
+            WorkFragment fragment = new WorkFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.relativelayout_for_fragment, fragment, fragment.getTag()).commit();
         } else if (id == R.id.nav_send) {
-
+            WorkFragment fragment = new WorkFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.relativelayout_for_fragment, fragment, fragment.getTag()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
