@@ -6,15 +6,7 @@ package edu.vt.hjue.hereandnow;
 import android.content.Context;
 import android.content.res.TypedArray;
 
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.TreeMap;
-
-import edu.vt.hjue.hereandnow.Restaurant;
-import edu.vt.hjue.hereandnow.R;
 
 /**
  * Created by boutell on 12/1/2015.
