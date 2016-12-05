@@ -1,5 +1,6 @@
 package edu.vt.hjue.hereandnow;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -119,5 +120,10 @@ public class ListActivity extends AppCompatActivity
         DetailFragment detailFragment = DetailFragment.newInstance(res);
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.relativelayout_for_fragment, detailFragment, detailFragment.getTag()).commit();
+    }
+
+    public void logout(View view) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }

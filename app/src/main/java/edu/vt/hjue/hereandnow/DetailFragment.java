@@ -67,6 +67,7 @@ public class DetailFragment extends Fragment {
         ImageView pic = (ImageView) view.findViewById(R.id.profile);
         TextView textView = (TextView) view.findViewById(R.id.title);
         TextView pointView = (TextView) view.findViewById(R.id.points);
+        TextView timeView = (TextView) view.findViewById(R.id.current_time);
         RatingBar ratingBar = (RatingBar) view.findViewById(R.id.indRating);
         TextView type = (TextView) view.findViewById(R.id.type);
         pic.setImageResource(mParam1.getProfile_pic_id());
@@ -75,12 +76,56 @@ public class DetailFragment extends Fragment {
         type.setText("Type: " + mParam1.getType());
 
         LinearLayout mLL;
+        LinearLayout mTimeLayout;
         mLL = (LinearLayout) view.findViewById(R.id.rect);
+        mTimeLayout = (LinearLayout) view.findViewById(R.id.time_rect);
+
+        Paint paintTime = new Paint();
+        float length = mParam1.getTime();
+        String color1;
+        if (length <= 5) {
+            timeView.setText("Current wait time: <= 5min");
+            color1 = "#6df02d";
+        }
+        else if (length <= 10) {
+            timeView.setText("Current wait time: <= 10min");
+            color1 = "#5a983b";
+        }
+        else if (length <= 15) {
+            timeView.setText("Current wait time: <= 15min");
+            color1 = "#e2e334";
+        }
+        else if (length <= 20) {
+            timeView.setText("Current wait time: <= 20min");
+            color1 = "#ffc205";
+        }
+        else if (length <=25) {
+            timeView.setText("Current wait time: <= 25min");
+            color1 = "#ff7705";
+        }
+        else {
+            timeView.setText("Current wait time: > 25min");
+            color1 = "#ff0000";
+        }
+        paintTime.setColor(Color.parseColor(color1));
+        Bitmap bgTime = Bitmap.createBitmap(800, 400, Bitmap.Config.ARGB_8888);
+        Canvas canvasTime = new Canvas(bgTime);
+        canvasTime.drawRect(20, 100, 20 + length * 24, 250, paintTime);
+        BitmapDrawable bdTime = new BitmapDrawable(bgTime);
+        mTimeLayout.setBackgroundDrawable(bdTime);
+
+
+
+
         Paint paint = new Paint();
         int point = mParam1.getPoints();
         String color;
         if (point == 50) {
-            pointView.setText("Redeem your coupon now!");
+            ImageView qr = (ImageView) view.findViewById(R.id.qrcode);
+            qr.getLayoutParams().width = 350;
+            qr.getLayoutParams().height = 350;
+            qr.setImageResource(R.drawable.qrcode);
+            pointView.setText("Redeem your coupon now! (50/50 points)");
             color = "#FFB90F";
         }
         else {
@@ -88,7 +133,7 @@ public class DetailFragment extends Fragment {
             color = "#3f51b5";
         }
         paint.setColor(Color.parseColor(color));
-        Bitmap bg = Bitmap.createBitmap(800, 800, Bitmap.Config.ARGB_8888);
+        Bitmap bg = Bitmap.createBitmap(800, 400, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bg);
         canvas.drawRect(20, 100, 20 + point * 15, 250, paint);
         BitmapDrawable bd = new BitmapDrawable(bg);
