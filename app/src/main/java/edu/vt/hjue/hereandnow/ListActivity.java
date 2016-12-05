@@ -1,13 +1,7 @@
 package edu.vt.hjue.hereandnow;
 
 import android.content.Intent;
-import android.content.res.TypedArray;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -15,17 +9,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
+import android.view.View;
 
 public class ListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, RestListFragment.Callback, RestPointFragment.Callback {
@@ -56,7 +42,7 @@ public class ListActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-        new HttpRequestTask().execute();
+        new HTTPRequestTask().execute();
     }
 
     @Override
@@ -142,30 +128,6 @@ public class ListActivity extends AppCompatActivity
     public void logout(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
-    }
-
-    private class HttpRequestTask extends AsyncTask<Void, Void, List<RestaurantJSON>> {
-        @Override
-        protected List<RestaurantJSON> doInBackground(Void... params) {
-            try {
-                final String url = "https://design-of-information.herokuapp.com/report";
-                RestTemplate restTemplate = new RestTemplate();
-                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-                ResponseEntity<List<RestaurantJSON>> rateResponse =
-                        restTemplate.exchange(url,
-                                HttpMethod.GET, null, new ParameterizedTypeReference<List<RestaurantJSON>>() {
-                                });
-                List<RestaurantJSON> restaurants = rateResponse.getBody();
-                return restaurants;
-            } catch (Exception e) {
-                Log.e("MainActivity", e.getMessage(), e);
-            }
-
-            return null;
-        }
-
-
-
     }
 
 }
