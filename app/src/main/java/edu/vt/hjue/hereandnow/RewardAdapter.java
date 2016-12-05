@@ -52,7 +52,7 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.ViewHolder
         int point = restaurant.getPoints();
         String color;
         if (point == 50) {
-            holder.mTimeTextView.setText("Redeem your coupon now!");
+            holder.mTimeTextView.setText("Redeem your coupon now! (50/50)");
             color = "#FFB90F";
         }
         else {

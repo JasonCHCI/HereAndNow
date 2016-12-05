@@ -36,7 +36,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public CustomAdapter(Context context, RestListFragment.Callback callback) {
         mRes = ResUtils.loadDocs(context);
         /* Connect to the database here
-            Iterate through the mRes ArrayList, update their time by using setTime(int number)
+            Iterate through the mRes ArrayList, update their time by using setTime(float number)
             e.g. mRes.get(2).setTime(30);
          */
         mCallback = callback;
@@ -51,9 +51,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @Override
     public void onBindViewHolder(CustomAdapter.ViewHolder holder, int position) {
         final Restaurant restaurant = mRes.get(position);
-        holder.mTitleTextView.setText(restaurant.getName());
+        if (restaurant.getName().equals("NCB"))
+        holder.mTitleTextView.setText("NCB       (You are here!)");
+        else holder.mTitleTextView.setText(restaurant.getName());
         Paint paint = new Paint();
-        int length = restaurant.getNumber();
+        float length = restaurant.getTime();
         String color;
         if (length <= 5) {
             holder.mTimeTextView.setText("<= 5min");

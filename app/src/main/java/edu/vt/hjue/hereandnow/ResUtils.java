@@ -26,19 +26,8 @@ public class ResUtils {
                 "Green's Grill/Sushi",
                 "Cafe De Bangkok",
                 "Cook Out"};
-        String[] times = new String[]{
-                "<= 5min",
-                "<= 5min",
-                "<= 5min",
-                "<= 10min",
-                "<= 10min",
-                "<= 15min",
-                "<= 20min",
-                "<= 25min",
-                "> 25min"
-        };
 
-        Integer[] number = new Integer[]{
+        float[] number = new float[]{
                 2,
                 3,
                 5,
@@ -91,7 +80,6 @@ public class ResUtils {
 
             Restaurant doc = new Restaurant(
                     names[i],
-                    times[i],
                     number[i],
                     points[i],
                     profile_pics.getResourceId(i, -1),

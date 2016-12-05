@@ -1,7 +1,13 @@
 package edu.vt.hjue.hereandnow;
 
+import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -105,9 +111,13 @@ public class ListActivity extends AppCompatActivity
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction().replace(R.id.relativelayout_for_fragment, settingsFragment, settingsFragment.getTag()).commit();
         } else if (id == R.id.nav_share) {
-
+            WorkFragment fragment = new WorkFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.relativelayout_for_fragment, fragment, fragment.getTag()).commit();
         } else if (id == R.id.nav_send) {
-
+            WorkFragment fragment = new WorkFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.relativelayout_for_fragment, fragment, fragment.getTag()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -127,6 +137,11 @@ public class ListActivity extends AppCompatActivity
         DetailFragment detailFragment = DetailFragment.newInstance(res);
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.relativelayout_for_fragment, detailFragment, detailFragment.getTag()).commit();
+    }
+
+    public void logout(View view) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
     private class HttpRequestTask extends AsyncTask<Void, Void, List<RestaurantJSON>> {
