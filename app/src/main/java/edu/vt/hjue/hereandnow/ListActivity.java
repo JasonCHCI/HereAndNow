@@ -1,5 +1,7 @@
 package edu.vt.hjue.hereandnow;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -37,6 +39,18 @@ public class ListActivity extends AppCompatActivity
         RestListFragment fragment = new RestListFragment();
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.relativelayout_for_fragment, fragment, fragment.getTag()).commit();
+        AlertDialog.Builder builder = new AlertDialog.Builder(ListActivity.this);
+        builder.setMessage("You are now in the line at NCB")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setTitle("Congrats");
+        alertDialog.show();
     }
 
     @Override
