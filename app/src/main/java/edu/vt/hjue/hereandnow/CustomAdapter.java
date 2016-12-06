@@ -52,7 +52,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public void onBindViewHolder(CustomAdapter.ViewHolder holder, int position) {
         final Restaurant restaurant = mRes.get(position);
         if (restaurant.getName().equals("NCB"))
-        holder.mTitleTextView.setText("NCB       (You are here!)");
+        holder.mTitleTextView.setText("NCB       \u261c");
+
         else holder.mTitleTextView.setText(restaurant.getName());
         Paint paint = new Paint();
         float length = restaurant.getTime();
