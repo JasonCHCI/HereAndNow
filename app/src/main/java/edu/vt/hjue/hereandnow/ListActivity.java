@@ -42,14 +42,14 @@ public class ListActivity extends AppCompatActivity
         AlertDialog.Builder builder = new AlertDialog.Builder(ListActivity.this);
         builder.setMessage("You are now in the line at NCB")
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
                 });
         AlertDialog alertDialog = builder.create();
-        alertDialog.setTitle("Congrats");
+        alertDialog.setTitle("Congratulations!");
         alertDialog.show();
     }
 
